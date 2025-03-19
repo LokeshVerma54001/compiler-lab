@@ -1,12 +1,12 @@
 %{
 #include<stdio.h>
-#include<ctype.h>    
-FILE *yyout;
+#include<ctype.h>
+FILE *yyin, *yyout;
 %}
 
 %%
-[ ]+ {}
-. {fputc(yytext[0], yyout);}
+[ \t]* {fprintf(yyout, " ");}
+[.]* {fprintf(yyout, "%s", yytext);}
 %%
 
 int main(){

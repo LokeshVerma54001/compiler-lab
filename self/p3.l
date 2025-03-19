@@ -3,13 +3,12 @@
 %}
 
 %%
-[0-9]+ {printf("Integer:%s\n", yytext);}
-[0-9]*\.[0-9]+ {printf("Float:%s\n", yytext);}
-. {printf("Not Int Or Float:%s\n", yytext);}
+[0-9]+ {printf("Integer:%s", yytext);}
+[0-9]*\.[0-9]+ {printf("Float:%s", yytext);}
+[.]* {printf("Invalid:%s", yytext);}
 %%
 
 int main(){
-    printf("Enter the text:");
     yylex();
     return 0;
 }

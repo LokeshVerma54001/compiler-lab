@@ -1,19 +1,19 @@
 %{
 #include<stdio.h>
-int lines = 0, spaces = 0, tabs = 0, others = 0;
+int spaces = 0, tabs = 0, lines = 0, others = 0;
 %}
 
 %%
-\n {++lines;}
-" " {++spaces;}
-\t {++tabs;}
-. {++others;}
+\n {lines++;}
+\t {tabs++;}
+[ ] {spaces++;}
+.   {others++;}
 %%
 
 int main(){
-    printf("Enter text:\n");
+    printf("Enter the text:\n");
     yylex();
-    printf("Lines:%d\nSpaces:%d\nTabs:%d\nOthers:%d\n", lines, spaces, tabs, others);
+    printf("Spaces:%d, Tabs:%d, Lines:%d, Others:%d", spaces, tabs, lines, others);
     return 0;
 }
 

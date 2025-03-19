@@ -1,13 +1,12 @@
 %{
 #include<stdio.h>
 #include<ctype.h>
-FILE *yyout;
-FILE *yyin;
+FILE *yyin, *yyout;
 %}
 
 %%
-"<"[^>]+">" {fprintf(yyout, "%s\n", yytext);};
-[^<]+  {}
+"<"[^">"]*">" {fprintf(yyout, "%s", yytext);}
+. {}
 %%
 
 int main(){
@@ -16,6 +15,7 @@ int main(){
     yylex();
     fclose(yyin);
     fclose(yyout);
+    return 0;
 }
 
 int yywrap(){
